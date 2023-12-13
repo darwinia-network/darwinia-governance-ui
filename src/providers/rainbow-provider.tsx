@@ -4,13 +4,10 @@ import { PropsWithChildren } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 import { darkTheme, getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { mainnet, polygon, optimism, arbitrum, base, zora } from "wagmi/chains";
 import { publicProvider } from "wagmi/providers/public";
+import { getChainConfigs } from "@/utils";
 
-const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum, base, zora],
-  [publicProvider()],
-);
+const { chains, publicClient } = configureChains(getChainConfigs(true), [publicProvider()]);
 
 const { connectors } = getDefaultWallets({
   appName: "Darwinia Governance",
